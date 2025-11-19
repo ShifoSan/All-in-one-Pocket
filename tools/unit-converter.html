@@ -3,38 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📏 Unit Converter | All-in-one Pocket</title>
+    <title>Unit Converter | All-in-one Pocket</title>
+    <meta name="description" content="Convert between different units of measurement including length, weight, temperature, and volume.">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="unit-converter.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="nav">
-        <div class="container nav-container">
-            <a href="../index.html" class="nav-brand">🚀 All-in-one Pocket</a>
-            <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="container header-content">
+            <a href="../index.html" class="brand-link">
+                <i data-lucide="rocket"></i>
+                All-in-one Pocket
+            </a>
+            <div class="nav-actions">
+                <a href="../index.html" class="btn-ghost">
+                    <i data-lucide="arrow-left"></i> Back to Hub
+                </a>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                    <i data-lucide="moon" id="themeIcon"></i>
+                </button>
+            </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Tool Section -->
     <main class="tool-page">
         <div class="container">
             <div class="tool-header">
-                <div class="tool-icon-large">📏</div>
+                <div class="tool-icon-large">
+                    <i data-lucide="ruler" size="64"></i>
+                </div>
                 <h1 class="tool-page-title">Unit Converter</h1>
                 <p class="tool-page-subtitle">Convert between different units of measurement instantly</p>
             </div>
 
             <!-- Converter Interface -->
-            <div class="converter-card">
+            <div class="glass-panel converter-card">
                 <!-- Category Selection -->
                 <div class="category-selector">
-                    <button class="category-btn active" data-category="length">📐 Length</button>
-                    <button class="category-btn" data-category="weight">⚖️ Weight</button>
-                    <button class="category-btn" data-category="temperature">🌡️ Temperature</button>
-                    <button class="category-btn" data-category="volume">🧪 Volume</button>
-                    <button class="category-btn" data-category="area">📦 Area</button>
-                    <button class="category-btn" data-category="speed">🚀 Speed</button>
+                    <button class="category-btn active" data-category="length">
+                        <i data-lucide="ruler" size="16"></i> Length
+                    </button>
+                    <button class="category-btn" data-category="weight">
+                        <i data-lucide="scale" size="16"></i> Weight
+                    </button>
+                    <button class="category-btn" data-category="temperature">
+                        <i data-lucide="thermometer" size="16"></i> Temp
+                    </button>
+                    <button class="category-btn" data-category="volume">
+                        <i data-lucide="flask-conical" size="16"></i> Volume
+                    </button>
+                    <button class="category-btn" data-category="area">
+                        <i data-lucide="box" size="16"></i> Area
+                    </button>
+                    <button class="category-btn" data-category="speed">
+                        <i data-lucide="gauge" size="16"></i> Speed
+                    </button>
                 </div>
 
                 <!-- Conversion Interface -->
@@ -52,7 +78,9 @@
 
                     <!-- Swap Button -->
                     <div class="swap-container">
-                        <button id="swapBtn" class="swap-btn" title="Swap units">⇄</button>
+                        <button id="swapBtn" class="swap-btn" title="Swap units">
+                            <i data-lucide="arrow-right-left"></i>
+                        </button>
                     </div>
 
                     <!-- Output Section -->
@@ -90,6 +118,9 @@
         </div>
     </footer>
 
+    <!-- Shared Script (Theme, PWA) -->
+    <script src="../script.js"></script>
+    <!-- Tool Specific Script -->
     <script src="unit-converter.js"></script>
 </body>
 </html>

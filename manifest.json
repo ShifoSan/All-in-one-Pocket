@@ -1,0 +1,15 @@
+{
+  "name": "All-in-one Pocket",
+  "short_name": "PocketTools",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#001F3F",
+  "theme_color": "#001F3F",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
