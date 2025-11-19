@@ -1,88 +1,36 @@
 /* Character Counter Specific Styles */
 
-.nav {
-    background: rgba(0, 31, 63, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-brand {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #00FFFF;
-    text-decoration: none;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    transition: all 0.3s ease;
-}
-
-.nav-brand:hover {
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-    transform: scale(1.05);
-}
-
-.nav-link {
-    color: #FFFACD;
-    text-decoration: none;
-    padding: 0.5rem 1.5rem;
-    border: 1px solid rgba(255, 250, 205, 0.3);
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.nav-link:hover {
-    background: rgba(255, 250, 205, 0.1);
-    border-color: #FFFACD;
-    box-shadow: 0 0 15px rgba(255, 250, 205, 0.3);
-}
-
-.tool-page {
-    min-height: calc(100vh - 200px);
-    padding: 3rem 0;
-}
-
+/* Tool Header Styles */
 .tool-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin: 2rem 0 3rem;
     animation: fadeInDown 0.6s ease;
 }
 
 .tool-icon-large {
-    font-size: 5rem;
+    color: var(--accent-color);
     margin-bottom: 1rem;
     animation: float 3s ease-in-out infinite;
 }
 
 .tool-page-title {
     font-size: 3rem;
-    color: #00FFFF;
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    color: var(--accent-color);
+    text-shadow: 0 0 20px var(--accent-glow);
     margin-bottom: 0.5rem;
 }
 
 .tool-page-subtitle {
     font-size: 1.2rem;
-    color: #FFFACD;
+    color: var(--text-secondary);
     opacity: 0.9;
 }
 
+/* Counter Card */
 .counter-card {
-    background: rgba(0, 31, 63, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    border-radius: 20px;
+    /* Glassmorphism handled by .glass-panel */
     padding: 2.5rem;
-    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
+    box-shadow: 0 8px 32px var(--glass-shadow);
     animation: fadeInUp 0.8s ease;
 }
 
@@ -93,20 +41,20 @@
 
 .input-label {
     display: block;
-    color: #00FFFF;
+    color: var(--accent-color);
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 10px var(--accent-glow);
 }
 
 .text-input {
     width: 100%;
-    background: rgba(0, 31, 63, 0.8);
-    border: 2px solid rgba(0, 255, 255, 0.3);
+    background: var(--input-bg);
+    border: 2px solid var(--card-border);
     border-radius: 15px;
     padding: 1.5rem;
-    color: #FFFFFF;
+    color: var(--text-primary);
     font-size: 1.1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -116,12 +64,14 @@
 
 .text-input:focus {
     outline: none;
-    border-color: #00FFFF;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-glow);
+    background: var(--card-bg);
 }
 
 .text-input::placeholder {
-    color: rgba(255, 250, 205, 0.5);
+    color: var(--text-secondary);
+    opacity: 0.7;
 }
 
 .input-actions {
@@ -138,28 +88,31 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .clear-btn {
-    background: linear-gradient(135deg, #CC0000, #FF0000);
+    background: linear-gradient(135deg, #FF416C, #FF4B2B);
     color: white;
-    box-shadow: 0 5px 15px rgba(204, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.3);
 }
 
 .clear-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(204, 0, 0, 0.5);
+    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.5);
 }
 
 .copy-btn {
-    background: linear-gradient(135deg, #00FFFF, #00BFFF);
+    background: linear-gradient(135deg, var(--accent-color), #00BFFF);
     color: #001F3F;
-    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 5px 15px var(--accent-glow);
 }
 
 .copy-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 8px 20px var(--accent-glow);
 }
 
 /* Statistics Grid */
@@ -171,8 +124,8 @@
 }
 
 .stat-card {
-    background: rgba(0, 31, 63, 0.7);
-    border: 1px solid rgba(0, 255, 255, 0.2);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 15px;
     padding: 1.5rem;
     text-align: center;
@@ -180,49 +133,57 @@
 }
 
 .stat-card.primary {
-    border-color: rgba(0, 255, 255, 0.4);
-    background: rgba(0, 31, 63, 0.8);
+    border-color: var(--accent-color);
+    background: var(--badge-bg);
 }
 
 .stat-card:hover {
-    border-color: #00FFFF;
-    box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 20px var(--accent-glow);
     transform: translateY(-5px);
 }
 
 .stat-icon {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* For emoji fallback */
     margin-bottom: 0.5rem;
+    color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+}
+
+.stat-icon svg {
+    width: 32px;
+    height: 32px;
 }
 
 .stat-value {
     font-size: 2rem;
     font-weight: 700;
-    color: #00FFFF;
+    color: var(--accent-color);
     margin-bottom: 0.3rem;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 10px var(--accent-glow);
 }
 
 .stat-label {
-    color: #FFFACD;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     opacity: 0.9;
 }
 
 /* Advanced Analysis */
 .analysis-section {
-    background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(138, 43, 226, 0.05));
-    border: 2px solid rgba(0, 255, 255, 0.3);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: 15px;
     padding: 2rem;
 }
 
 .analysis-title {
-    color: #00FFFF;
+    color: var(--accent-color);
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     text-align: center;
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    text-shadow: 0 0 15px var(--accent-glow);
 }
 
 .analysis-grid {
@@ -236,27 +197,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background: rgba(0, 31, 63, 0.7);
-    border: 1px solid rgba(0, 255, 255, 0.2);
+    background: var(--input-bg);
+    border: 1px solid var(--card-border);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
 
 .analysis-item:hover {
-    border-color: #00FFFF;
-    box-shadow: 0 3px 15px rgba(0, 255, 255, 0.2);
+    border-color: var(--accent-color);
+    box-shadow: 0 3px 15px var(--accent-glow);
 }
 
 .analysis-label {
-    color: #FFFACD;
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
 .analysis-value {
-    color: #00FFFF;
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 1.1rem;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+    text-shadow: 0 0 10px var(--accent-glow);
 }
 
 /* Animations */
@@ -297,10 +258,6 @@
         font-size: 2rem;
     }
 
-    .tool-icon-large {
-        font-size: 3.5rem;
-    }
-
     .counter-card {
         padding: 1.5rem;
     }
@@ -328,9 +285,5 @@
 
     .stat-value {
         font-size: 1.5rem;
-    }
-
-    .stat-icon {
-        font-size: 2rem;
     }
 }

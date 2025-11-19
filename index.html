@@ -3,67 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 All-in-one Pocket | Multi-Tool Hub</title>
-    <meta name="description" content="Your futuristic multi-tool web app with calculators, converters, and developer utilities">
+    <title>All-in-one Pocket | Modern Multi-Tool Hub</title>
+    <meta name="description" content="Access a suite of modern web tools including Unit Converter, Time Zone Converter, Typing Speed Test, and more. Simple, fast, and beautiful.">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="container">
-            <h1 class="hero-title">🚀 All-in-one Pocket</h1>
-            <p class="hero-subtitle">Your futuristic multi-tool hub for everyday tasks</p>
-            <div class="grid-overlay"></div>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="container header-content">
+            <a href="index.html" class="brand-link">
+                <i data-lucide="rocket"></i>
+                All-in-one Pocket
+            </a>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                    <i data-lucide="moon" id="themeIcon"></i>
+                </button>
+            </div>
         </div>
     </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">All-in-one Pocket</h1>
+            <p class="hero-subtitle">Your futuristic multi-tool hub for everyday tasks</p>
+
+            <!-- Search & Filter -->
+            <div class="search-section">
+                <div class="search-container">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search tools (e.g., 'converter', 'typing')...">
+                </div>
+                <div class="filter-tags" id="filterTags">
+                    <button class="filter-tag active" data-filter="all">All</button>
+                    <button class="filter-tag" data-filter="converters">Converters</button>
+                    <button class="filter-tag" data-filter="productivity">Productivity</button>
+                    <button class="filter-tag" data-filter="math">Math</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Dashboard Section -->
     <main class="dashboard">
         <div class="container">
-            <h2 class="section-title">📊 Calculators & Tools</h2>
-            <p class="section-subtitle">Choose a tool to get started</p>
             
-            <div class="tools-grid">
-                <!-- Tool Card 1: Unit Converter -->
-                <a href="tools/unit-converter.html" class="tool-card" data-tool="unit-converter">
-                    <div class="tool-icon">📏</div>
-                    <h3 class="tool-title">Unit Converter</h3>
-                    <p class="tool-description">Convert between different units of measurement</p>
-                    <span class="tool-badge active">Live ✔️</span>
-                </a>
+            <!-- Converters Section -->
+            <section id="sec-converters" class="tool-section" data-category="converters">
+                <div class="section-header">
+                    <i data-lucide="arrow-right-left" color="var(--accent-color)"></i>
+                    <h3>Converters</h3>
+                </div>
+                <div class="tools-grid">
+                    <!-- Unit Converter -->
+                    <a href="tools/unit-converter.html" class="tool-card" data-tool="unit-converter" data-category="converters">
+                        <div class="tool-icon">
+                            <i data-lucide="ruler" size="48"></i>
+                        </div>
+                        <h3 class="tool-title">Unit Converter</h3>
+                        <p class="tool-description">Convert between length, weight, temperature, and more.</p>
+                        <span class="tool-badge">Live</span>
+                    </a>
 
-                <!-- Tool Card 2: Time Zone Converter -->
-                <a href="tools/timezone-converter.html" class="tool-card" data-tool="timezone-converter">
-                    <div class="tool-icon">🌍</div>
-                    <h3 class="tool-title">Time Zone Converter</h3>
-                    <p class="tool-description">Convert time across different time zones</p>
-                    <span class="tool-badge active">Live ✔️</span>
-                </a>
+                    <!-- Time Zone Converter -->
+                    <a href="tools/timezone-converter.html" class="tool-card" data-tool="timezone-converter" data-category="converters">
+                        <div class="tool-icon">
+                            <i data-lucide="globe" size="48"></i>
+                        </div>
+                        <h3 class="tool-title">Time Zone Converter</h3>
+                        <p class="tool-description">Convert time across different global time zones.</p>
+                        <span class="tool-badge">Live</span>
+                    </a>
+                </div>
+            </section>
 
-                <!-- Tool Card 3: Typing Speed Test -->
-                <a href="tools/typing-speed-test.html" class="tool-card" data-tool="typing-test">
-                    <div class="tool-icon">⌨️</div>
-                    <h3 class="tool-title">Typing Speed Test</h3>
-                    <p class="tool-description">Test your typing speed and accuracy</p>
-                    <span class="tool-badge active">Live ✔️</span>
-                </a>
+            <!-- Productivity Section -->
+            <section id="sec-productivity" class="tool-section" data-category="productivity">
+                <div class="section-header">
+                    <i data-lucide="zap" color="var(--accent-color)"></i>
+                    <h3>Productivity</h3>
+                </div>
+                <div class="tools-grid">
+                    <!-- Typing Speed Test -->
+                    <a href="tools/typing-speed-test.html" class="tool-card" data-tool="typing-test" data-category="productivity">
+                        <div class="tool-icon">
+                            <i data-lucide="keyboard" size="48"></i>
+                        </div>
+                        <h3 class="tool-title">Typing Speed Test</h3>
+                        <p class="tool-description">Test your WPM and accuracy with various text samples.</p>
+                        <span class="tool-badge">Live</span>
+                    </a>
 
-                <!-- Tool Card 4: Character Counter -->
-                <a href="tools/character-counter.html" class="tool-card" data-tool="char-counter">
-                    <div class="tool-icon">📝</div>
-                    <h3 class="tool-title">Character Counter</h3>
-                    <p class="tool-description">Count words, characters, and more</p>
-                    <span class="tool-badge active">Live ✔️</span>
-                </a>
+                    <!-- Character Counter -->
+                    <a href="tools/character-counter.html" class="tool-card" data-tool="char-counter" data-category="productivity">
+                        <div class="tool-icon">
+                            <i data-lucide="align-left" size="48"></i>
+                        </div>
+                        <h3 class="tool-title">Character Counter</h3>
+                        <p class="tool-description">Real-time count of words, characters, and sentences.</p>
+                        <span class="tool-badge">Live</span>
+                    </a>
+                </div>
+            </section>
 
-                <!-- Tool Card 5: Percentage Calculator -->
-                <a href="tools/percentage-calculator.html" class="tool-card" data-tool="percentage-calc">
-                    <div class="tool-icon">🔢</div>
-                    <h3 class="tool-title">Percentage Calculator</h3>
-                    <p class="tool-description">Calculate percentages quickly</p>
-                    <span class="tool-badge active">Live ✔️</span>
-                </a>
+            <!-- Math Section -->
+            <section id="sec-math" class="tool-section" data-category="math">
+                <div class="section-header">
+                    <i data-lucide="calculator" color="var(--accent-color)"></i>
+                    <h3>Math</h3>
+                </div>
+                <div class="tools-grid">
+                    <!-- Percentage Calculator -->
+                    <a href="tools/percentage-calculator.html" class="tool-card" data-tool="percentage-calc" data-category="math">
+                        <div class="tool-icon">
+                            <i data-lucide="percent" size="48"></i>
+                        </div>
+                        <h3 class="tool-title">Percentage Calculator</h3>
+                        <p class="tool-description">Calculate percentages, increases, and decreases quickly.</p>
+                        <span class="tool-badge">Live</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="hidden" style="text-align: center; padding: 3rem;">
+                <i data-lucide="frown" size="48" style="color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                <p style="color: var(--text-secondary);">No tools found matching your criteria.</p>
             </div>
+
         </div>
     </main>
 
@@ -72,7 +142,9 @@
         <div class="container">
             <p>Made by <strong>ShifoSan</strong> | 2025</p>
             <p class="footer-links">
-                <a href="https://github.com/ShifoSan/All-in-one-Pocket" target="_blank">GitHub</a>
+                <a href="https://github.com/ShifoSan/All-in-one-Pocket" target="_blank">
+                    <i data-lucide="github" style="vertical-align: middle; margin-right: 5px; width: 16px;"></i>GitHub
+                </a>
             </p>
         </div>
     </footer>

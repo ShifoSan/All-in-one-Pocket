@@ -3,30 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔢 Percentage Calculator | All-in-one Pocket</title>
+    <title>Percentage Calculator | All-in-one Pocket</title>
+    <meta name="description" content="Calculate percentages, increases, and decreases quickly with our easy-to-use percentage calculator tool.">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="percentage-calculator.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="nav">
-        <div class="container nav-container">
-            <a href="../index.html" class="nav-brand">🚀 All-in-one Pocket</a>
-            <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="container header-content">
+            <a href="../index.html" class="brand-link">
+                <i data-lucide="rocket"></i>
+                All-in-one Pocket
+            </a>
+            <div class="nav-actions">
+                <a href="../index.html" class="btn-ghost">
+                    <i data-lucide="arrow-left"></i> Back to Hub
+                </a>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                    <i data-lucide="moon" id="themeIcon"></i>
+                </button>
+            </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Tool Section -->
     <main class="tool-page">
         <div class="container">
             <div class="tool-header">
-                <div class="tool-icon-large">🔢</div>
+                <div class="tool-icon-large">
+                    <i data-lucide="percent" size="64"></i>
+                </div>
                 <h1 class="tool-page-title">Percentage Calculator</h1>
                 <p class="tool-page-subtitle">Calculate percentages quickly and easily</p>
             </div>
 
             <!-- Calculator Modes -->
-            <div class="calculator-card">
+            <div class="glass-panel calculator-card">
                 <!-- Mode Selector -->
                 <div class="mode-selector">
                     <button class="mode-btn active" data-mode="percent-of">What is X% of Y?</button>
@@ -99,12 +113,12 @@
             </div>
 
             <!-- Mental Math Tips Section -->
-            <div class="tips-card">
+            <div class="glass-panel tips-card">
                 <h3 class="tips-title">🧠 Mental Math Tricks</h3>
                 <div class="tips-grid">
                     <div class="tip-item">
                         <div class="tip-header">
-                            <span class="tip-icon">💡</span>
+                            <span class="tip-icon"><i data-lucide="lightbulb"></i></span>
                             <span class="tip-percent">10%</span>
                         </div>
                         <div class="tip-description">Move the decimal point one place left</div>
@@ -113,7 +127,7 @@
 
                     <div class="tip-item">
                         <div class="tip-header">
-                            <span class="tip-icon">💡</span>
+                            <span class="tip-icon"><i data-lucide="lightbulb"></i></span>
                             <span class="tip-percent">5%</span>
                         </div>
                         <div class="tip-description">Find 10% and divide by 2</div>
@@ -122,7 +136,7 @@
 
                     <div class="tip-item">
                         <div class="tip-header">
-                            <span class="tip-icon">💡</span>
+                            <span class="tip-icon"><i data-lucide="lightbulb"></i></span>
                             <span class="tip-percent">1%</span>
                         </div>
                         <div class="tip-description">Move the decimal point two places left</div>
@@ -131,7 +145,7 @@
 
                     <div class="tip-item">
                         <div class="tip-header">
-                            <span class="tip-icon">💡</span>
+                            <span class="tip-icon"><i data-lucide="lightbulb"></i></span>
                             <span class="tip-percent">15%</span>
                         </div>
                         <div class="tip-description">Find 10% + 5%</div>
@@ -140,7 +154,7 @@
 
                     <div class="tip-item">
                         <div class="tip-header">
-                            <span class="tip-icon">💡</span>
+                            <span class="tip-icon"><i data-lucide="lightbulb"></i></span>
                             <span class="tip-percent">25%</span>
                         </div>
                         <div class="tip-description">Divide by 4 (quarter)</div>
@@ -149,29 +163,11 @@
 
                     <div class="tip-item">
                         <div class="tip-header">
-                            <span class="tip-icon">💡</span>
+                            <span class="tip-icon"><i data-lucide="lightbulb"></i></span>
                             <span class="tip-percent">50%</span>
                         </div>
                         <div class="tip-description">Divide by 2 (half)</div>
                         <div class="tip-example">50% of 160 = 160 ÷ 2 = 80</div>
-                    </div>
-
-                    <div class="tip-item">
-                        <div class="tip-header">
-                            <span class="tip-icon">💡</span>
-                            <span class="tip-percent">20%</span>
-                        </div>
-                        <div class="tip-description">Find 10% and multiply by 2</div>
-                        <div class="tip-example">20% of 150 = 15 × 2 = 30</div>
-                    </div>
-
-                    <div class="tip-item">
-                        <div class="tip-header">
-                            <span class="tip-icon">💡</span>
-                            <span class="tip-percent">75%</span>
-                        </div>
-                        <div class="tip-description">Find 50% + 25%</div>
-                        <div class="tip-example">75% of 80 = 40 + 20 = 60</div>
                     </div>
                 </div>
             </div>
@@ -185,6 +181,9 @@
         </div>
     </footer>
 
+    <!-- Shared Script (Theme, PWA) -->
+    <script src="../script.js"></script>
+    <!-- Tool Specific Script -->
     <script src="percentage-calculator.js"></script>
 </body>
 </html>

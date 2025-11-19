@@ -2,117 +2,150 @@
 // ALL-IN-ONE POCKET - MAIN SCRIPT
 // ===================================
 
-// Wait for DOM to load
+// Register Service Worker for PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('Service Worker Registered!', reg.scope))
+            .catch(err => console.log('Service Worker Registration Failed:', err));
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 All-in-one Pocket initialized!');
     
-    // Get all tool cards
-    const toolCards = document.querySelectorAll('.tool-card');
-    
-    // Add click handlers to tool cards
-    toolCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const toolName = card.dataset.tool;
-            handleToolClick(toolName, card);
-        });
-    });
-    
-    // Add hover sound effect (optional - can be enabled later)
-    toolCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            // Subtle scale animation already handled by CSS
-            // Can add sound effects here later
-        });
-    });
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Initialize Theme Toggle
+    initThemeToggle();
+
+    // Initialize Search & Filter
+    initSearchAndFilter();
 });
 
-// Handle tool card clicks
-function handleToolClick(toolName, cardElement) {
-    console.log(`Clicked: ${toolName}`);
+// ===================================
+// THEME TOGGLE LOGIC
+// ===================================
+function initThemeToggle() {
+    const toggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
     
-    // Check if tool is available
-    const badge = cardElement.querySelector('.tool-badge');
+    // Check localStorage for saved preference
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     
-    if (badge && badge.textContent === 'Coming Soon') {
-        // Show coming soon message
-        showNotification('This tool is coming soon! 🚀', 'info');
+    // Apply saved theme
+    if (savedTheme === 'light') {
+        html.setAttribute('data-theme', 'light');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
     } else {
-        // Navigate to tool page (will be implemented later)
-        window.location.href = `tools/${toolName}.html`;
+        html.removeAttribute('data-theme');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+    }
+
+    // Re-render icon since we changed the attribute
+    lucide.createIcons();
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+
+            if (currentTheme === 'light') {
+                // Switch to Dark
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                if (themeIcon) {
+                    themeIcon.setAttribute('data-lucide', 'moon');
+                    // Small animation/rotation effect could be added via CSS classes
+                }
+            } else {
+                // Switch to Light
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                if (themeIcon) {
+                    themeIcon.setAttribute('data-lucide', 'sun');
+                }
+            }
+
+            // Re-initialize icons to update the moon/sun
+            lucide.createIcons();
+        });
     }
 }
 
-// Show notification system
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-    
-    // Style the notification
-    Object.assign(notification.style, {
-        position: 'fixed',
-        top: '20px',
-        right: '20px',
-        padding: '1rem 1.5rem',
-        background: 'rgba(0, 217, 255, 0.9)',
-        color: '#001F3F',
-        borderRadius: '12px',
-        fontWeight: '600',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-        zIndex: '9999',
-        animation: 'slideIn 0.3s ease',
-        backdropFilter: 'blur(10px)'
+// ===================================
+// SEARCH & FILTER LOGIC
+// ===================================
+function initSearchAndFilter() {
+    const searchInput = document.getElementById('searchInput');
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const toolCards = document.querySelectorAll('.tool-card');
+    const sections = document.querySelectorAll('.tool-section');
+    const noResults = document.getElementById('noResults');
+
+    if (!searchInput) return; // Only runs on main hub
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    // Filter Button Click Handler
+    filterTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            // Update active state
+            filterTags.forEach(t => t.classList.remove('active'));
+            tag.classList.add('active');
+
+            currentFilter = tag.dataset.filter;
+            applyFilters();
+        });
     });
-    
-    // Add to body
-    document.body.appendChild(notification);
-    
-    // Auto remove after 3 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
+
+    // Search Input Handler
+    searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value.toLowerCase().trim();
+        applyFilters();
+    });
+
+    function applyFilters() {
+        let visibleCount = 0;
+
+        sections.forEach(section => {
+            const sectionCategory = section.dataset.category;
+            const cards = section.querySelectorAll('.tool-card');
+            let sectionHasVisibleCards = false;
+
+            cards.forEach(card => {
+                const cardTitle = card.querySelector('.tool-title').textContent.toLowerCase();
+                const cardDesc = card.querySelector('.tool-description').textContent.toLowerCase();
+                const cardCategory = card.dataset.category;
+
+                const matchesSearch = cardTitle.includes(currentSearch) || cardDesc.includes(currentSearch);
+                const matchesFilter = currentFilter === 'all' || currentFilter === cardCategory;
+
+                if (matchesSearch && matchesFilter) {
+                    card.parentElement.style.display = 'grid'; // Reset grid if needed, though parent is grid
+                    card.style.display = 'flex'; // Tool cards are flex
+                    sectionHasVisibleCards = true;
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Hide empty sections
+            if (sectionHasVisibleCards) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+
+        // Show "No Results" if everything is hidden
+        if (visibleCount === 0) {
+            noResults.classList.remove('hidden');
+        } else {
+            noResults.classList.add('hidden');
+        }
+    }
 }
-
-// Add animation keyframes dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Add smooth scroll behavior
-document.documentElement.style.scrollBehavior = 'smooth';
-
-// Console welcome message
-console.log(`
-%c🚀 All-in-one Pocket %cv1.0.0
-%cMade by ShifoSan | 2025
-%cGitHub: https://github.com/ShifoSan/All-in-one-Pocket
-`,
-'color: #00D9FF; font-size: 24px; font-weight: bold;',
-'color: #B388FF; font-size: 14px;',
-'color: #F4E5C2; font-size: 12px;',
-'color: #00D9FF; font-size: 12px;'
-);
