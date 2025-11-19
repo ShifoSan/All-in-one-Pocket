@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⌨️ Typing Speed Test | All-in-one Pocket</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="typing-speed-test.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-brand">🚀 All-in-one Pocket</a>
+            <a href="../index.html" class="nav-link">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Tool Section -->
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-header">
+                <div class="tool-icon-large">⌨️</div>
+                <h1 class="tool-page-title">Typing Speed Test</h1>
+                <p class="tool-page-subtitle">Test your typing speed and accuracy in real-time</p>
+            </div>
+
+            <!-- Test Interface -->
+            <div class="test-card">
+                <!-- Timer and Stats Display -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">Time</div>
+                            <div class="stat-value" id="timer">60s</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-content">
+                            <div class="stat-label">WPM</div>
+                            <div class="stat-value" id="wpm">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <div class="stat-label">Accuracy</div>
+                            <div class="stat-value" id="accuracy">100%</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">✏️</div>
+                        <div class="stat-content">
+                            <div class="stat-label">CPM</div>
+                            <div class="stat-value" id="cpm">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Display Area -->
+                <div class="text-display-section">
+                    <div class="text-display" id="textDisplay"></div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-section">
+                    <textarea 
+                        id="typingInput" 
+                        class="typing-input" 
+                        placeholder="Click 'Start Test' to begin typing..."
+                        disabled
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="controls">
+                    <button id="startBtn" class="control-btn start-btn">▶️ Start Test</button>
+                    <button id="restartBtn" class="control-btn restart-btn" disabled>🔄 Restart</button>
+                    <button id="difficultyBtn" class="control-btn difficulty-btn">⚙️ Medium</button>
+                </div>
+
+                <!-- Time Options -->
+                <div class="time-options">
+                    <span class="options-label">Test Duration:</span>
+                    <button class="time-btn" data-time="15">15s</button>
+                    <button class="time-btn active" data-time="60">60s</button>
+                    <button class="time-btn" data-time="120">2min</button>
+                    <button class="time-btn" data-time="300">5min</button>
+                </div>
+            </div>
+
+            <!-- Results Section (Hidden by default) -->
+            <div class="results-card" id="resultsCard" style="display: none;">
+                <h2 class="results-title">🏆 Test Results</h2>
+                <div class="results-grid">
+                    <div class="result-item primary">
+                        <div class="result-icon">⚡</div>
+                        <div class="result-value" id="finalWpm">0</div>
+                        <div class="result-label">Words Per Minute</div>
+                    </div>
+                    <div class="result-item primary">
+                        <div class="result-icon">🎯</div>
+                        <div class="result-value" id="finalAccuracy">100%</div>
+                        <div class="result-label">Accuracy</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-icon">✏️</div>
+                        <div class="result-value" id="finalCpm">0</div>
+                        <div class="result-label">Characters Per Minute</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-icon">✅</div>
+                        <div class="result-value" id="correctChars">0</div>
+                        <div class="result-label">Correct Characters</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-icon">❌</div>
+                        <div class="result-value" id="incorrectChars">0</div>
+                        <div class="result-label">Incorrect Characters</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-icon">📊</div>
+                        <div class="result-value" id="totalWords">0</div>
+                        <div class="result-label">Total Words Typed</div>
+                    </div>
+                </div>
+
+                <!-- Performance Rating -->
+                <div class="performance-rating">
+                    <div class="rating-icon" id="ratingIcon">🌟</div>
+                    <div class="rating-text" id="ratingText">Good Job!</div>
+                    <div class="rating-description" id="ratingDescription">Keep practicing to improve your speed!</div>
+                </div>
+
+                <!-- Share Results -->
+                <div class="share-section">
+                    <button id="shareBtn" class="share-btn">📤 Share Results</button>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="tips-section">
+                <h3 class="tips-title">💡 Pro Tips for Faster Typing</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">👆</div>
+                        <h4>Proper Positioning</h4>
+                        <p>Keep your fingers on the home row (ASDF JKL;) for optimal reach</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">👀</div>
+                        <h4>Look at Screen</h4>
+                        <p>Train yourself to type without looking at the keyboard</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🎯</div>
+                        <h4>Accuracy First</h4>
+                        <p>Focus on accuracy before speed - speed will come naturally</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🏋️</div>
+                        <h4>Practice Daily</h4>
+                        <p>15 minutes of daily practice can dramatically improve your WPM</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🧘</div>
+                        <h4>Stay Relaxed</h4>
+                        <p>Keep your wrists elevated and fingers relaxed to avoid fatigue</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">📈</div>
+                        <h4>Track Progress</h4>
+                        <p>Regular testing helps you monitor improvement over time</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WPM Reference Guide -->
+            <div class="reference-section">
+                <h3 class="reference-title">📊 WPM Reference Guide</h3>
+                <div class="reference-table">
+                    <div class="ref-row header">
+                        <span>Speed (WPM)</span>
+                        <span>Level</span>
+                        <span>Description</span>
+                    </div>
+                    <div class="ref-row">
+                        <span class="ref-speed">0-20</span>
+                        <span class="ref-level beginner">Beginner</span>
+                        <span class="ref-desc">Starting out - keep practicing!</span>
+                    </div>
+                    <div class="ref-row">
+                        <span class="ref-speed">21-40</span>
+                        <span class="ref-level average">Average</span>
+                        <span class="ref-desc">Good progress - you're getting there</span>
+                    </div>
+                    <div class="ref-row">
+                        <span class="ref-speed">41-60</span>
+                        <span class="ref-level good">Good</span>
+                        <span class="ref-desc">Above average - solid typing skills</span>
+                    </div>
+                    <div class="ref-row">
+                        <span class="ref-speed">61-80</span>
+                        <span class="ref-level excellent">Excellent</span>
+                        <span class="ref-desc">Professional level - well done!</span>
+                    </div>
+                    <div class="ref-row">
+                        <span class="ref-speed">81+</span>
+                        <span class="ref-level expert">Expert</span>
+                        <span class="ref-desc">Exceptional - you're a typing master!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Made by <strong>ShifoSan</strong> | 2025</p>
+        </div>
+    </footer>
+
+    <script src="typing-speed-test.js"></script>
+</body>
+</html>
